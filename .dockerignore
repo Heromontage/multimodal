@@ -1,0 +1,14 @@
+.venv
+myenv
+web/node_modules
+web/dist
+.git
+**/__pycache__
+**/.pytest_cache
+report.html
+data.csv
+cardiolens-docker-bundle.zip
+cardiolens-docker-bundle/
+.~lock.*#
+.env
+.env.*

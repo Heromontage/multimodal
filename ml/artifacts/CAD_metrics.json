@@ -1,0 +1,29 @@
+{
+  "target": "CAD",
+  "model_type": "xgboost",
+  "parameters": {
+    "n_estimators": 144,
+    "max_depth": 15,
+    "learning_rate": 0.1205712628744377,
+    "subsample": 0.8394633936788146,
+    "colsample_bytree": 0.6624074561769746,
+    "objective": "binary:logistic",
+    "eval_metric": "logloss",
+    "scale_pos_weight": 1,
+    "random_state": 42
+  },
+  "metrics": {
+    "source": "held_out",
+    "evaluation_samples": 61,
+    "cv_roc_auc_mean": 0.9297057900083111,
+    "cv_roc_auc_std": 0.03241385351661517,
+    "accuracy": 0.819672131147541,
+    "precision": 0.82,
+    "recall": 0.9534883720930233,
+    "f1": 0.8817204301075269,
+    "roc_auc": 0.8552971576227391,
+    "pr_auc": 0.9303034572370092,
+    "brier_score": 0.13813018276307784
+  },
+  "feature_count": 55
+}

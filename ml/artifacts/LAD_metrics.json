@@ -1,0 +1,26 @@
+{
+  "target": "LAD",
+  "model_type": "random_forest",
+  "parameters": {
+    "n_estimators": 144,
+    "max_depth": 20,
+    "min_samples_split": 15,
+    "min_samples_leaf": 6,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "metrics": {
+    "source": "held_out",
+    "evaluation_samples": 61,
+    "cv_roc_auc_mean": 0.8438377902885292,
+    "cv_roc_auc_std": 0.04123141296372653,
+    "accuracy": 0.8032786885245902,
+    "precision": 0.8,
+    "recall": 0.8888888888888888,
+    "f1": 0.8421052631578947,
+    "roc_auc": 0.8344444444444444,
+    "pr_auc": 0.8671838827427897,
+    "brier_score": 0.15529568997150703
+  },
+  "feature_count": 55
+}

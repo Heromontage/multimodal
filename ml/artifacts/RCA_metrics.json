@@ -1,0 +1,26 @@
+{
+  "target": "RCA",
+  "model_type": "random_forest",
+  "parameters": {
+    "n_estimators": 144,
+    "max_depth": 20,
+    "min_samples_split": 15,
+    "min_samples_leaf": 6,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "metrics": {
+    "source": "held_out",
+    "evaluation_samples": 61,
+    "cv_roc_auc_mean": 0.7075983147833743,
+    "cv_roc_auc_std": 0.04251658405397128,
+    "accuracy": 0.6885245901639344,
+    "precision": 0.6428571428571429,
+    "recall": 0.391304347826087,
+    "f1": 0.4864864864864865,
+    "roc_auc": 0.7379862700228833,
+    "pr_auc": 0.6446437351661983,
+    "brier_score": 0.19788029230043647
+  },
+  "feature_count": 55
+}
