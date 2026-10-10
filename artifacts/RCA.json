@@ -1,0 +1,25 @@
+{
+  "target": "RCA",
+  "params": {
+    "mode": "quantile",
+    "k": 10,
+    "alpha": 5.0,
+    "shrinkage": 1.0
+  },
+  "threshold": 0.3290724617106125,
+  "calibration_slope": 0.9517719903235071,
+  "selected_features": [
+    "Typical Chest Pain",
+    "DM",
+    "Atypical",
+    "Lymph",
+    "Age",
+    "Neut",
+    "Function Class",
+    "Poor R Progression",
+    "ESR",
+    "Nonanginal"
+  ],
+  "inner_selection_auc": 0.7483365377056912,
+  "note": "Inner selection score is optimistic; see nested outer-fold metrics for evaluation."
+}

@@ -1,0 +1,331 @@
+{
+  "configuration": {
+    "data": "file.csv",
+    "output": "reports",
+    "models": "artifacts",
+    "repeats": 3,
+    "outer_folds": 5,
+    "inner_folds": 4,
+    "jobs": 4,
+    "seed": 42
+  },
+  "dataset_sha256": "23ff6b40efae31ffbcaa302b0f70b3d5d167153aca8d41f0b53115df6c92c669",
+  "audit": {
+    "rows": 303,
+    "input_features": 55,
+    "missing_cells": 0,
+    "duplicate_feature_rows": 0,
+    "constant_features": [
+      "Exertional CP"
+    ],
+    "positive_counts": {
+      "Cath": 216,
+      "LAD": 177,
+      "LCX": 119,
+      "RCA": 114
+    },
+    "target_disagreement_count": 1,
+    "target_disagreement_csv_lines": [
+      95
+    ]
+  },
+  "candidates": [
+    {
+      "mode": "gaussian",
+      "k": 10,
+      "alpha": 1.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 10,
+      "alpha": 1.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 10,
+      "alpha": 5.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 10,
+      "alpha": 5.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 20,
+      "alpha": 1.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 20,
+      "alpha": 1.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 20,
+      "alpha": 5.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 20,
+      "alpha": 5.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 35,
+      "alpha": 1.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 35,
+      "alpha": 1.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 35,
+      "alpha": 5.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "gaussian",
+      "k": 35,
+      "alpha": 5.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "gaussian",
+      "k": "all",
+      "alpha": 1.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "gaussian",
+      "k": "all",
+      "alpha": 1.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "gaussian",
+      "k": "all",
+      "alpha": 5.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "gaussian",
+      "k": "all",
+      "alpha": 5.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "quantile",
+      "k": 10,
+      "alpha": 1.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "quantile",
+      "k": 10,
+      "alpha": 1.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "quantile",
+      "k": 10,
+      "alpha": 5.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "quantile",
+      "k": 10,
+      "alpha": 5.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "quantile",
+      "k": 20,
+      "alpha": 1.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "quantile",
+      "k": 20,
+      "alpha": 1.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "quantile",
+      "k": 20,
+      "alpha": 5.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "quantile",
+      "k": 20,
+      "alpha": 5.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "quantile",
+      "k": 35,
+      "alpha": 1.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "quantile",
+      "k": 35,
+      "alpha": 1.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "quantile",
+      "k": 35,
+      "alpha": 5.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "quantile",
+      "k": 35,
+      "alpha": 5.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "quantile",
+      "k": "all",
+      "alpha": 1.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "quantile",
+      "k": "all",
+      "alpha": 1.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "quantile",
+      "k": "all",
+      "alpha": 5.0,
+      "shrinkage": 0.0
+    },
+    {
+      "mode": "quantile",
+      "k": "all",
+      "alpha": 5.0,
+      "shrinkage": 1.0
+    },
+    {
+      "mode": "binned",
+      "k": 10,
+      "alpha": 1.0,
+      "n_bins": 3
+    },
+    {
+      "mode": "binned",
+      "k": 10,
+      "alpha": 1.0,
+      "n_bins": 5
+    },
+    {
+      "mode": "binned",
+      "k": 10,
+      "alpha": 5.0,
+      "n_bins": 3
+    },
+    {
+      "mode": "binned",
+      "k": 10,
+      "alpha": 5.0,
+      "n_bins": 5
+    },
+    {
+      "mode": "binned",
+      "k": 20,
+      "alpha": 1.0,
+      "n_bins": 3
+    },
+    {
+      "mode": "binned",
+      "k": 20,
+      "alpha": 1.0,
+      "n_bins": 5
+    },
+    {
+      "mode": "binned",
+      "k": 20,
+      "alpha": 5.0,
+      "n_bins": 3
+    },
+    {
+      "mode": "binned",
+      "k": 20,
+      "alpha": 5.0,
+      "n_bins": 5
+    },
+    {
+      "mode": "binned",
+      "k": 35,
+      "alpha": 1.0,
+      "n_bins": 3
+    },
+    {
+      "mode": "binned",
+      "k": 35,
+      "alpha": 1.0,
+      "n_bins": 5
+    },
+    {
+      "mode": "binned",
+      "k": 35,
+      "alpha": 5.0,
+      "n_bins": 3
+    },
+    {
+      "mode": "binned",
+      "k": 35,
+      "alpha": 5.0,
+      "n_bins": 5
+    },
+    {
+      "mode": "binned",
+      "k": "all",
+      "alpha": 1.0,
+      "n_bins": 3
+    },
+    {
+      "mode": "binned",
+      "k": "all",
+      "alpha": 1.0,
+      "n_bins": 5
+    },
+    {
+      "mode": "binned",
+      "k": "all",
+      "alpha": 5.0,
+      "n_bins": 3
+    },
+    {
+      "mode": "binned",
+      "k": "all",
+      "alpha": 5.0,
+      "n_bins": 5
+    }
+  ],
+  "versions": {
+    "python": "3.11.16",
+    "sklearn": "1.9.1",
+    "pandas": "3.0.6",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "evaluation": "Repeated nested stratified CV; all tuning uses outer-training data only",
+  "caveat": "No external test cohort. Bootstrap intervals condition on fitted OOF predictions; not full uncertainty."
+}

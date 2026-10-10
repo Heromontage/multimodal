@@ -1,0 +1,35 @@
+{
+  "target": "LAD",
+  "params": {
+    "mode": "quantile",
+    "k": 20,
+    "alpha": 1.0,
+    "shrinkage": 1.0
+  },
+  "threshold": 0.5430233179443805,
+  "calibration_slope": 1.7621749931391266,
+  "selected_features": [
+    "Typical Chest Pain",
+    "Region RWMA",
+    "Atypical",
+    "Age",
+    "EF-TTE",
+    "VHD",
+    "Nonanginal",
+    "Tinversion",
+    "ESR",
+    "St Elevation",
+    "HTN",
+    "Lymph",
+    "PR",
+    "Q Wave",
+    "Neut",
+    "FBS",
+    "St Depression",
+    "BP",
+    "TG",
+    "Diastolic Murmur"
+  ],
+  "inner_selection_auc": 0.8606616823476703,
+  "note": "Inner selection score is optimistic; see nested outer-fold metrics for evaluation."
+}
