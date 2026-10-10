@@ -1,0 +1,1616 @@
+{
+  "dataset": "BodyParts3D",
+  "release": "4.0",
+  "resolution": "99% polygon reduction (official archive)",
+  "attribution": "BodyParts3D, \u00a9 The Database Center for Life Science licensed under CC Attribution 4.0 International",
+  "attributionShort": "BodyParts3D / DBCLS \u00b7 CC BY 4.0",
+  "sourceUrl": "https://lifesciencedb.jp/bp3d/",
+  "archiveUrl": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/isa_BP3D_4.0_obj_99.zip",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "licenseEvidenceUrl": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/README_e.html",
+  "mappingUrl": "https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/partof_element_parts.txt",
+  "coordinates": {
+    "preserved": true,
+    "units": "mm",
+    "upAxis": "Z"
+  },
+  "meshes": [
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2417",
+      "file": "FJ2417.obj",
+      "elementId": "FJ2417",
+      "sha256": "12d2dccc78efa7d21f6f4af53ae08603be473613ec4e04b0beb9c0239b96da56",
+      "vertices": 708,
+      "faces": 1272,
+      "bounds": {
+        "min": [
+          23.1402,
+          -159.581,
+          1244.9
+        ],
+        "max": [
+          40.9215,
+          -139.537,
+          1261.45
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2418",
+      "file": "FJ2418.obj",
+      "elementId": "FJ2418",
+      "sha256": "ad6dbf98d5afb2dd5010c42df9d707bf172b0ecc4f6e22c70716d022660aadc8",
+      "vertices": 532,
+      "faces": 816,
+      "bounds": {
+        "min": [
+          31.5447,
+          -160.032,
+          1191.81
+        ],
+        "max": [
+          56.5892,
+          -124.512,
+          1224.65
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2419",
+      "file": "FJ2419.obj",
+      "elementId": "FJ2419",
+      "sha256": "1169b9b927ff75aac2dc2406a700b962bb9f3c95b860c5271548414d9e1226da",
+      "vertices": 580,
+      "faces": 882,
+      "bounds": {
+        "min": [
+          12.0583,
+          -172.71,
+          1179.8
+        ],
+        "max": [
+          47.1424,
+          -151.131,
+          1209.05
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2420",
+      "file": "FJ2420.obj",
+      "elementId": "FJ2420",
+      "sha256": "f0294cbbd35096d1df5e8bdc92f17dbed5ebf981e62024a07e7ca18e31eb1a94",
+      "vertices": 4052,
+      "faces": 7558,
+      "bounds": {
+        "min": [
+          11.7217,
+          -141.625,
+          1204.46
+        ],
+        "max": [
+          45.8879,
+          -93.1022,
+          1235.92
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2421",
+      "file": "FJ2421.obj",
+      "elementId": "FJ2421",
+      "sha256": "7303c55e6d9c2e294759f7f7e01d23fc120eba74bce9ade0a01cc4bdb2bd4200",
+      "vertices": 4282,
+      "faces": 8160,
+      "bounds": {
+        "min": [
+          -21.0772,
+          -156.313,
+          1198.11
+        ],
+        "max": [
+          23.2047,
+          -129.198,
+          1236.21
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2426",
+      "file": "FJ2426.obj",
+      "elementId": "FJ2426",
+      "sha256": "86fa5ef6decf47a91d33f826e1b5579bbecd94795c206b2d797f52c36c3e1020",
+      "vertices": 526,
+      "faces": 914,
+      "bounds": {
+        "min": [
+          16.5969,
+          -126.656,
+          1240.7
+        ],
+        "max": [
+          32.3882,
+          -106.41,
+          1255.08
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2427",
+      "file": "FJ2427.obj",
+      "elementId": "FJ2427",
+      "sha256": "eb867fa648f3da04036d925e6a740d4e3a922b893d74a20dec40d8d763a18414",
+      "vertices": 573,
+      "faces": 996,
+      "bounds": {
+        "min": [
+          23.5494,
+          -142.209,
+          1245.19
+        ],
+        "max": [
+          40.5959,
+          -127.603,
+          1261.62
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2429",
+      "file": "FJ2429.obj",
+      "elementId": "FJ2429",
+      "sha256": "2f02411a806eedacfcb662b2dee47ca60f8448eb5243f48fb32083df66541ca4",
+      "vertices": 487,
+      "faces": 780,
+      "bounds": {
+        "min": [
+          46.4648,
+          -146.92,
+          1188.44
+        ],
+        "max": [
+          74.5404,
+          -104.767,
+          1218.26
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2430",
+      "file": "FJ2430.obj",
+      "elementId": "FJ2430",
+      "sha256": "971ab49fff2908862fc230653f5f0980424e2030ae7f29f7f96637e8b636c4e8",
+      "vertices": 484,
+      "faces": 692,
+      "bounds": {
+        "min": [
+          7.16454,
+          -160.418,
+          1178.44
+        ],
+        "max": [
+          36.7766,
+          -131.886,
+          1192.79
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2431",
+      "file": "FJ2431.obj",
+      "elementId": "FJ2431",
+      "sha256": "40ae6e23decbb5fe2ea3800d44d517302f219078266abd8dcbc7d86ebc246799",
+      "vertices": 215,
+      "faces": 316,
+      "bounds": {
+        "min": [
+          5.66774,
+          -123.847,
+          1233.41
+        ],
+        "max": [
+          23.2396,
+          -104.826,
+          1250.52
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2432",
+      "file": "FJ2432.obj",
+      "elementId": "FJ2432",
+      "sha256": "0b296151ecceff395da5c435bcf65cf6dfca390e72eb0be71d778fee84bc216b",
+      "vertices": 2560,
+      "faces": 3820,
+      "bounds": {
+        "min": [
+          13.5745,
+          -123.267,
+          1199.6
+        ],
+        "max": [
+          62.8543,
+          -85.4446,
+          1231.65
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2433",
+      "file": "FJ2433.obj",
+      "elementId": "FJ2433",
+      "sha256": "6519afbf9aa2eb3c0dc25d8e332a0208fd2ad68956c1dfe1ef6b010f04984d55",
+      "vertices": 2729,
+      "faces": 4926,
+      "bounds": {
+        "min": [
+          -18.9578,
+          -145.256,
+          1188.64
+        ],
+        "max": [
+          16.4701,
+          -113.717,
+          1216.2
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2434",
+      "file": "FJ2434.obj",
+      "elementId": "FJ2434",
+      "sha256": "ed432a90e8fbfe9742d524044c0bd20c165f2a9a820ee585f00635cc47c5b5c0",
+      "vertices": 769,
+      "faces": 1370,
+      "bounds": {
+        "min": [
+          8.76793,
+          -156.869,
+          1248.07
+        ],
+        "max": [
+          27.5245,
+          -132.88,
+          1265.27
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2435",
+      "file": "FJ2435.obj",
+      "elementId": "FJ2435",
+      "sha256": "b498ef286aa1ba0bfeaf2114298f43078007beab66fc81f422ff6017c309bd7a",
+      "vertices": 508,
+      "faces": 920,
+      "bounds": {
+        "min": [
+          6.99224,
+          -132.441,
+          1234.7
+        ],
+        "max": [
+          26.6562,
+          -118.971,
+          1252.73
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2436",
+      "file": "FJ2436.obj",
+      "elementId": "FJ2436",
+      "sha256": "f0572079c56ea2a00eff869b07c4910defd624c5bda3fddd2403e4f1831f6be1",
+      "vertices": 2591,
+      "faces": 4526,
+      "bounds": {
+        "min": [
+          -6.484,
+          -137.745,
+          1213.14
+        ],
+        "max": [
+          29.5014,
+          -113.573,
+          1236.48
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2437",
+      "file": "FJ2437.obj",
+      "elementId": "FJ2437",
+      "sha256": "8ac0c0aa95adc3f41e82f51bbd8e8a74681f4e58af7f7edd4bc9c5aafffa97c7",
+      "vertices": 539,
+      "faces": 844,
+      "bounds": {
+        "min": [
+          12.8912,
+          -143.599,
+          1213.46
+        ],
+        "max": [
+          32.1741,
+          -128.195,
+          1240.17
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2438",
+      "file": "FJ2438.obj",
+      "elementId": "FJ2438",
+      "sha256": "ad28c5925374c6648bafb77ac9a89163316c101559cb730906208c96266ae078",
+      "vertices": 4284,
+      "faces": 7544,
+      "bounds": {
+        "min": [
+          -22.8801,
+          -151.151,
+          1199.43
+        ],
+        "max": [
+          63.2392,
+          -70.1704,
+          1272.4
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA7088",
+      "name": "Heart tissue FJ2439",
+      "file": "FJ2439.obj",
+      "elementId": "FJ2439",
+      "sha256": "6e87510c607541b53b124f8224b6be74cb9b7351e29102246053b30a7260d8dd",
+      "vertices": 9887,
+      "faces": 17784,
+      "bounds": {
+        "min": [
+          -36.3037,
+          -162.645,
+          1183.08
+        ],
+        "max": [
+          6.77791,
+          -96.345,
+          1279.5
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2631",
+      "file": "FJ2631.obj",
+      "elementId": "FJ2631",
+      "sha256": "ca7d8c0c82982ef1c838cd2224650c810adc3e52aaf6b345f0cdb77d7b068c5e",
+      "vertices": 1549,
+      "faces": 3032,
+      "bounds": {
+        "min": [
+          33.2928,
+          -168.008,
+          1179.54
+        ],
+        "max": [
+          63.8413,
+          -120.073,
+          1257.62
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2632",
+      "file": "FJ2632.obj",
+      "elementId": "FJ2632",
+      "sha256": "74d743ebe7ccb06a69244bccb59789cbb094af1f3b279e24be5541b9d01d2f6c",
+      "vertices": 91,
+      "faces": 108,
+      "bounds": {
+        "min": [
+          45.0176,
+          -168.054,
+          1228.67
+        ],
+        "max": [
+          49.9554,
+          -163.655,
+          1230.46
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2633",
+      "file": "FJ2633.obj",
+      "elementId": "FJ2633",
+      "sha256": "ba9e2eca1abc7946b27b8adb9846f1b626c7cc3e942da1a2cd2301e0c02bcf1f",
+      "vertices": 318,
+      "faces": 492,
+      "bounds": {
+        "min": [
+          65.6934,
+          -140.95,
+          1210.2
+        ],
+        "max": [
+          78.1436,
+          -120.501,
+          1236.73
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2634",
+      "file": "FJ2634.obj",
+      "elementId": "FJ2634",
+      "sha256": "575eec8663acbae025b51ad8fa42dc6229f35d6f5d25673912c76cb59f117aec",
+      "vertices": 158,
+      "faces": 196,
+      "bounds": {
+        "min": [
+          70.7029,
+          -131.152,
+          1227.62
+        ],
+        "max": [
+          73.6426,
+          -119.706,
+          1233.91
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2635",
+      "file": "FJ2635.obj",
+      "elementId": "FJ2635",
+      "sha256": "bc02d461ae79073f21f350b3c9751d7ccb973ea3c74f8c58bc9a2aeafc533281",
+      "vertices": 495,
+      "faces": 766,
+      "bounds": {
+        "min": [
+          53.2984,
+          -168.108,
+          1181.99
+        ],
+        "max": [
+          67.3163,
+          -156.679,
+          1227.62
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2636",
+      "file": "FJ2636.obj",
+      "elementId": "FJ2636",
+      "sha256": "119cc81d1816f1db4c3d64add10efa63c9148e3177b74d10184f7a1e579581e5",
+      "vertices": 282,
+      "faces": 420,
+      "bounds": {
+        "min": [
+          59.3332,
+          -167.282,
+          1204.82
+        ],
+        "max": [
+          62.7598,
+          -162.844,
+          1219.41
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2637",
+      "file": "FJ2637.obj",
+      "elementId": "FJ2637",
+      "sha256": "d4fa7aa9a6e224a3c7fea1264f4d81ea076ec7baaa8b1c8b3da8e1053bbf4e4a",
+      "vertices": 144,
+      "faces": 160,
+      "bounds": {
+        "min": [
+          62.9355,
+          -161.326,
+          1182.73
+        ],
+        "max": [
+          68.7239,
+          -153.245,
+          1185.66
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2638",
+      "file": "FJ2638.obj",
+      "elementId": "FJ2638",
+      "sha256": "bad6520fcbcea112ca400ba5328e52f7b2ff680346b5b2591db2e97394f9b6e5",
+      "vertices": 246,
+      "faces": 290,
+      "bounds": {
+        "min": [
+          70.9297,
+          -161.783,
+          1192.4
+        ],
+        "max": [
+          76.0108,
+          -151.165,
+          1198.99
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2639",
+      "file": "FJ2639.obj",
+      "elementId": "FJ2639",
+      "sha256": "a80ec5085d0430fa9ae5b643042742bb9757cfd23d3f0280e162751b91acda5f",
+      "vertices": 122,
+      "faces": 150,
+      "bounds": {
+        "min": [
+          71.1114,
+          -153.497,
+          1183.58
+        ],
+        "max": [
+          73.2089,
+          -144.507,
+          1188.54
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2640",
+      "file": "FJ2640.obj",
+      "elementId": "FJ2640",
+      "sha256": "7391892f7c4a8ab6165bf17e6e5ba1367267f14b2cf845233456cb5945f31e14",
+      "vertices": 218,
+      "faces": 260,
+      "bounds": {
+        "min": [
+          67.4145,
+          -153.498,
+          1179.45
+        ],
+        "max": [
+          73.2088,
+          -146.035,
+          1188.55
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2641",
+      "file": "FJ2641.obj",
+      "elementId": "FJ2641",
+      "sha256": "0a9b2c86202434b7aa66c2499c680c40c5d3ebce6bc3ef73c927018ff2c81718",
+      "vertices": 322,
+      "faces": 442,
+      "bounds": {
+        "min": [
+          46.2692,
+          -168.949,
+          1181.67
+        ],
+        "max": [
+          54.6271,
+          -158.587,
+          1205.54
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2642",
+      "file": "FJ2642.obj",
+      "elementId": "FJ2642",
+      "sha256": "2f6dbb44742cd505762e3f24eb2ed3e9ed929f7a909ac28db4df68393e098888",
+      "vertices": 525,
+      "faces": 964,
+      "bounds": {
+        "min": [
+          50.0626,
+          -147.441,
+          1194.77
+        ],
+        "max": [
+          79.3913,
+          -133.27,
+          1243.61
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2643",
+      "file": "FJ2643.obj",
+      "elementId": "FJ2643",
+      "sha256": "3ee93d012a24f6fb93c92faa6eb35d918a3875b58cb0dd52ca5e3dc010ee55cf",
+      "vertices": 269,
+      "faces": 478,
+      "bounds": {
+        "min": [
+          33.6178,
+          -171.783,
+          1239.39
+        ],
+        "max": [
+          50.4157,
+          -143.073,
+          1247.02
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2644",
+      "file": "FJ2644.obj",
+      "elementId": "FJ2644",
+      "sha256": "91b7c72f9fd221c63dd14932b7e66a0331e96d1b0aff3bfbec21f12187530467",
+      "vertices": 193,
+      "faces": 306,
+      "bounds": {
+        "min": [
+          28.8318,
+          -170.795,
+          1243.3
+        ],
+        "max": [
+          43.3605,
+          -163.058,
+          1246.95
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2645",
+      "file": "FJ2645.obj",
+      "elementId": "FJ2645",
+      "sha256": "d6dcbc3294545f857df903393a6db47b268e3a97e8a0c87a0ab5bef056469eee",
+      "vertices": 224,
+      "faces": 318,
+      "bounds": {
+        "min": [
+          42.177,
+          -171.082,
+          1223.58
+        ],
+        "max": [
+          53.1428,
+          -152.68,
+          1235.5
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2646",
+      "file": "FJ2646.obj",
+      "elementId": "FJ2646",
+      "sha256": "4549b2c6a0bf1d15057bd6185fdafbec846deecc464b6cbfb19f7cedb68b815c",
+      "vertices": 287,
+      "faces": 470,
+      "bounds": {
+        "min": [
+          37.1664,
+          -172.766,
+          1196.87
+        ],
+        "max": [
+          54.544,
+          -160.897,
+          1222.3
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2647",
+      "file": "FJ2647.obj",
+      "elementId": "FJ2647",
+      "sha256": "18044f3caa4b23c89e8ce42555df29326c1ff1bdbf4b52559473dfb8368b040a",
+      "vertices": 216,
+      "faces": 306,
+      "bounds": {
+        "min": [
+          40.427,
+          -167.238,
+          1182.83
+        ],
+        "max": [
+          47.1041,
+          -160.586,
+          1192.26
+        ]
+      }
+    },
+    {
+      "target": "LAD",
+      "conceptId": "FMA3862",
+      "name": "LAD artery component FJ2648",
+      "file": "FJ2648.obj",
+      "elementId": "FJ2648",
+      "sha256": "33bdf6f3048e9c940710c1cfc27e59af549f37c14b58ba24bd12f3bd5b284d73",
+      "vertices": 203,
+      "faces": 286,
+      "bounds": {
+        "min": [
+          74.3632,
+          -148.184,
+          1210.09
+        ],
+        "max": [
+          77.0926,
+          -140.968,
+          1223.07
+        ]
+      }
+    },
+    {
+      "target": "LCX",
+      "conceptId": "FMA3895",
+      "name": "LCX artery component FJ2649",
+      "file": "FJ2649.obj",
+      "elementId": "FJ2649",
+      "sha256": "d4833bb0b60ee79f526150ad7ba9124e326aba8cd48000711bf3a6b0997b0ce0",
+      "vertices": 692,
+      "faces": 1380,
+      "bounds": {
+        "min": [
+          34.3553,
+          -121.957,
+          1222.38
+        ],
+        "max": [
+          50.5177,
+          -86.9805,
+          1256.31
+        ]
+      }
+    },
+    {
+      "target": "LCX",
+      "conceptId": "FMA3895",
+      "name": "LCX artery component FJ2650",
+      "file": "FJ2650.obj",
+      "elementId": "FJ2650",
+      "sha256": "dd2c38fdc784311c955fb8b0420d70dfbdf16f0ce6e236a086dc5f350faae04c",
+      "vertices": 316,
+      "faces": 396,
+      "bounds": {
+        "min": [
+          55.2865,
+          -95.7634,
+          1199.68
+        ],
+        "max": [
+          59.8176,
+          -89.4264,
+          1216.54
+        ]
+      }
+    },
+    {
+      "target": "LCX",
+      "conceptId": "FMA3895",
+      "name": "LCX artery component FJ2651",
+      "file": "FJ2651.obj",
+      "elementId": "FJ2651",
+      "sha256": "864567c4b15c3add5a8184edb142766538936e2ef17af4efa25acca67f4344d8",
+      "vertices": 395,
+      "faces": 510,
+      "bounds": {
+        "min": [
+          58.756,
+          -115.551,
+          1211.07
+        ],
+        "max": [
+          75.6332,
+          -92.2562,
+          1218.22
+        ]
+      }
+    },
+    {
+      "target": "LCX",
+      "conceptId": "FMA3895",
+      "name": "LCX artery component FJ2652",
+      "file": "FJ2652.obj",
+      "elementId": "FJ2652",
+      "sha256": "fd5ee304558da1d1ffebb01ca7f59b374087667e71d473fe5401f355a2ff161f",
+      "vertices": 240,
+      "faces": 308,
+      "bounds": {
+        "min": [
+          64.1856,
+          -107.278,
+          1194.65
+        ],
+        "max": [
+          68.2426,
+          -97.3195,
+          1209.61
+        ]
+      }
+    },
+    {
+      "target": "LCX",
+      "conceptId": "FMA3895",
+      "name": "LCX artery component FJ2653",
+      "file": "FJ2653.obj",
+      "elementId": "FJ2653",
+      "sha256": "74fc42fbc783857619dccb5a753b06cbfce9abc6403f14e38f55bbb9fafdad80",
+      "vertices": 232,
+      "faces": 252,
+      "bounds": {
+        "min": [
+          73.7457,
+          -128.307,
+          1188.33
+        ],
+        "max": [
+          76.8311,
+          -119.449,
+          1198.68
+        ]
+      }
+    },
+    {
+      "target": "LCX",
+      "conceptId": "FMA3895",
+      "name": "LCX artery component FJ2654",
+      "file": "FJ2654.obj",
+      "elementId": "FJ2654",
+      "sha256": "4e8467b12ca3374d25807d5de058cfb8d147ad2decd99f6debe57847a83099a1",
+      "vertices": 150,
+      "faces": 172,
+      "bounds": {
+        "min": [
+          74.1667,
+          -142.845,
+          1187.82
+        ],
+        "max": [
+          76.4916,
+          -131.297,
+          1192.21
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2667",
+      "file": "FJ2667.obj",
+      "elementId": "FJ2667",
+      "sha256": "4a43aa2911b4b1ee153d8948e5edfa99c078f374603a52c69100ab3ae2ef4362",
+      "vertices": 267,
+      "faces": 360,
+      "bounds": {
+        "min": [
+          13.2975,
+          -173.963,
+          1195.64
+        ],
+        "max": [
+          33.977,
+          -169.338,
+          1204.85
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2668",
+      "file": "FJ2668.obj",
+      "elementId": "FJ2668",
+      "sha256": "512479cec370a4390d5f2f0555fbdfc7ba3c2e8fb7b78b242cb4382ede30287f",
+      "vertices": 176,
+      "faces": 216,
+      "bounds": {
+        "min": [
+          23.7623,
+          -173.797,
+          1201.58
+        ],
+        "max": [
+          35.7176,
+          -172.332,
+          1205.79
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2670",
+      "file": "FJ2670.obj",
+      "elementId": "FJ2670",
+      "sha256": "e734bab3fcf2ee2bfba0eb6f827f8894fd9ff86e261f4fff0cf1ec37c3f84073",
+      "vertices": 280,
+      "faces": 442,
+      "bounds": {
+        "min": [
+          7.00791,
+          -169.622,
+          1247.03
+        ],
+        "max": [
+          26.8707,
+          -151.582,
+          1259.08
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2671",
+      "file": "FJ2671.obj",
+      "elementId": "FJ2671",
+      "sha256": "9ca85be93a017bc2a8aa7d565b3ec320620e4b22e78936b0d6f52b7cf3015be5",
+      "vertices": 313,
+      "faces": 478,
+      "bounds": {
+        "min": [
+          0.417048,
+          -176.517,
+          1222.24
+        ],
+        "max": [
+          24.4832,
+          -159.262,
+          1245.43
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2672",
+      "file": "FJ2672.obj",
+      "elementId": "FJ2672",
+      "sha256": "032c1562f06b7c960e1524fd8259fa321d59426ba0a9e6df32b42eb2c79e8e11",
+      "vertices": 447,
+      "faces": 742,
+      "bounds": {
+        "min": [
+          -14.2896,
+          -173.149,
+          1194.38
+        ],
+        "max": [
+          26.0301,
+          -158.58,
+          1220.11
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2673",
+      "file": "FJ2673.obj",
+      "elementId": "FJ2673",
+      "sha256": "9ffff6952448478f178b3a4debe89cc0cb28035cf392f992c119768406f1cf32",
+      "vertices": 243,
+      "faces": 338,
+      "bounds": {
+        "min": [
+          11.3195,
+          -176.509,
+          1222.5
+        ],
+        "max": [
+          33.6145,
+          -172.346,
+          1232.47
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2674",
+      "file": "FJ2674.obj",
+      "elementId": "FJ2674",
+      "sha256": "e4ff01e6ce03c7f0bfd28d099680623dd2e98829bde7efb9dbd9936029e3961d",
+      "vertices": 186,
+      "faces": 284,
+      "bounds": {
+        "min": [
+          3.9372,
+          -170.947,
+          1195.56
+        ],
+        "max": [
+          15.6076,
+          -167.824,
+          1207.93
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2675",
+      "file": "FJ2675.obj",
+      "elementId": "FJ2675",
+      "sha256": "18496992ff047cc1578789bb356e181e91fd0bc3f59332f392b64ef02a91cc45",
+      "vertices": 148,
+      "faces": 200,
+      "bounds": {
+        "min": [
+          -6.41476,
+          -166.412,
+          1203.13
+        ],
+        "max": [
+          -0.126139,
+          -164.082,
+          1212.53
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2676",
+      "file": "FJ2676.obj",
+      "elementId": "FJ2676",
+      "sha256": "5455ee32b46013949d56fbdbbe87d08988975d7e3504105b270ed942376a13f8",
+      "vertices": 233,
+      "faces": 304,
+      "bounds": {
+        "min": [
+          18.4338,
+          -165.493,
+          1253.44
+        ],
+        "max": [
+          32.7239,
+          -163.242,
+          1257.64
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2677",
+      "file": "FJ2677.obj",
+      "elementId": "FJ2677",
+      "sha256": "475b16a4d4a365a732fa8dbc1757f57b81ca99847ef2d36dd160656994dae474",
+      "vertices": 198,
+      "faces": 252,
+      "bounds": {
+        "min": [
+          20.9332,
+          -176.313,
+          1226.87
+        ],
+        "max": [
+          34.177,
+          -174.16,
+          1231.44
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2692",
+      "file": "FJ2692.obj",
+      "elementId": "FJ2692",
+      "sha256": "c38882cfb2a4ff493aece22ced1f23c9e044bf9cc091f14d40c7256179d34ccf",
+      "vertices": 608,
+      "faces": 930,
+      "bounds": {
+        "min": [
+          -0.896807,
+          -151.046,
+          1175.88
+        ],
+        "max": [
+          65.5678,
+          -119.205,
+          1190.44
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2693",
+      "file": "FJ2693.obj",
+      "elementId": "FJ2693",
+      "sha256": "2f089666f8301e52400250614677a5c824bfa37fee55bfeb545904c8acffc063",
+      "vertices": 480,
+      "faces": 766,
+      "bounds": {
+        "min": [
+          -0.780954,
+          -138.002,
+          1174.92
+        ],
+        "max": [
+          57.6407,
+          -117.587,
+          1191.4
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2694",
+      "file": "FJ2694.obj",
+      "elementId": "FJ2694",
+      "sha256": "8579bbf2af9aa03a93604db0f05283334baf131b26ca17d9bbd9c1ff281ee048",
+      "vertices": 305,
+      "faces": 424,
+      "bounds": {
+        "min": [
+          17.7393,
+          -122.364,
+          1177.78
+        ],
+        "max": [
+          34.4785,
+          -118.092,
+          1182.45
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2695",
+      "file": "FJ2695.obj",
+      "elementId": "FJ2695",
+      "sha256": "8a50ff9ad16191e3fd6cadb480943d212796d9cba391659c186be731b8f68d6a",
+      "vertices": 163,
+      "faces": 236,
+      "bounds": {
+        "min": [
+          37.6414,
+          -134.781,
+          1174.95
+        ],
+        "max": [
+          46.4785,
+          -128.965,
+          1178.65
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2696",
+      "file": "FJ2696.obj",
+      "elementId": "FJ2696",
+      "sha256": "0d90aa40e3ac1a0d4423d19da7c8a9f4446063bdae1b7246f97669c6db3720df",
+      "vertices": 286,
+      "faces": 336,
+      "bounds": {
+        "min": [
+          17.4566,
+          -153.798,
+          1177.97
+        ],
+        "max": [
+          31.5782,
+          -128.465,
+          1181.3
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2697",
+      "file": "FJ2697.obj",
+      "elementId": "FJ2697",
+      "sha256": "da528958c3c9784dc6ed9c04cd0a8d1fe6678c66e3792e0c258b1b51c9a07874",
+      "vertices": 188,
+      "faces": 220,
+      "bounds": {
+        "min": [
+          38.7991,
+          -153.36,
+          1175.89
+        ],
+        "max": [
+          41.5583,
+          -140.87,
+          1178.53
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2698",
+      "file": "FJ2698.obj",
+      "elementId": "FJ2698",
+      "sha256": "d253c0270030d4f2845f99ec3658e0e0ac9a79bda8e6d2e3ec1cae9d1942c9bd",
+      "vertices": 195,
+      "faces": 200,
+      "bounds": {
+        "min": [
+          39.4599,
+          -154.17,
+          1175.9
+        ],
+        "max": [
+          45.1114,
+          -145.197,
+          1178.91
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2699",
+      "file": "FJ2699.obj",
+      "elementId": "FJ2699",
+      "sha256": "4434305060b28d0b294b33cc18cdeb62f7a525f1282500c24dfb558205ec54a5",
+      "vertices": 126,
+      "faces": 126,
+      "bounds": {
+        "min": [
+          60.3716,
+          -153.435,
+          1177.9
+        ],
+        "max": [
+          66.8785,
+          -149.881,
+          1181.47
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2700",
+      "file": "FJ2700.obj",
+      "elementId": "FJ2700",
+      "sha256": "2c4dacf7f7029de9075b4671085accefcf96200b4dbaba8a130ac1c3b177ebc6",
+      "vertices": 197,
+      "faces": 280,
+      "bounds": {
+        "min": [
+          56.4499,
+          -155.87,
+          1177.35
+        ],
+        "max": [
+          62.7395,
+          -148.287,
+          1181.49
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2714",
+      "file": "FJ2714.obj",
+      "elementId": "FJ2714",
+      "sha256": "d7d9ed93cb831b5beb98cdbbb814d2628e38efcc524028a4a291ee6144ea5c03",
+      "vertices": 482,
+      "faces": 794,
+      "bounds": {
+        "min": [
+          19.339,
+          -130.561,
+          1178.0
+        ],
+        "max": [
+          68.3224,
+          -93.3674,
+          1194.8
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2715",
+      "file": "FJ2715.obj",
+      "elementId": "FJ2715",
+      "sha256": "f18dda103cde54e3a21c811c33f2dc3cf25f000eaff460703c696e76cc6a0e3f",
+      "vertices": 185,
+      "faces": 218,
+      "bounds": {
+        "min": [
+          67.5654,
+          -134.496,
+          1179.75
+        ],
+        "max": [
+          73.5926,
+          -129.698,
+          1186.86
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2716",
+      "file": "FJ2716.obj",
+      "elementId": "FJ2716",
+      "sha256": "0efa7807739a27fd0fd8ee6fb043ebdc17c8c824b1d068ddcf8bc305a138ca19",
+      "vertices": 188,
+      "faces": 232,
+      "bounds": {
+        "min": [
+          67.5522,
+          -139.107,
+          1179.65
+        ],
+        "max": [
+          72.0801,
+          -129.802,
+          1184.88
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2717",
+      "file": "FJ2717.obj",
+      "elementId": "FJ2717",
+      "sha256": "3fb3cd79b66f9ec1be89382534eef8b9294328d6e7c17a7b48e87dd879316579",
+      "vertices": 259,
+      "faces": 340,
+      "bounds": {
+        "min": [
+          26.2255,
+          -95.2395,
+          1189.27
+        ],
+        "max": [
+          42.3301,
+          -88.6317,
+          1195.03
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2718",
+      "file": "FJ2718.obj",
+      "elementId": "FJ2718",
+      "sha256": "f08dbbc4cb90043b874b8483b378c0da44a573a6dccbb17530f8f07e8c32ba0c",
+      "vertices": 139,
+      "faces": 186,
+      "bounds": {
+        "min": [
+          38.7705,
+          -99.3127,
+          1184.11
+        ],
+        "max": [
+          44.8687,
+          -95.4755,
+          1188.07
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2719",
+      "file": "FJ2719.obj",
+      "elementId": "FJ2719",
+      "sha256": "56493dd7e056b7c7cb462293402c3fa42dbb82c572dc746dfee5685eb4afe94a",
+      "vertices": 299,
+      "faces": 380,
+      "bounds": {
+        "min": [
+          42.8745,
+          -116.788,
+          1176.2
+        ],
+        "max": [
+          46.4398,
+          -104.653,
+          1181.56
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2720",
+      "file": "FJ2720.obj",
+      "elementId": "FJ2720",
+      "sha256": "425ff09df45ea552c0d9a6d3cb57ec55a16ca5ca37e0736bf6ba5dea6cdf03a9",
+      "vertices": 233,
+      "faces": 320,
+      "bounds": {
+        "min": [
+          53.3707,
+          -109.305,
+          1179.91
+        ],
+        "max": [
+          65.1989,
+          -106.854,
+          1189.03
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2721",
+      "file": "FJ2721.obj",
+      "elementId": "FJ2721",
+      "sha256": "36858ad1fc4dd8f39de435eb42715c02b75976da212e9f322723e222d9862922",
+      "vertices": 198,
+      "faces": 256,
+      "bounds": {
+        "min": [
+          61.8243,
+          -120.001,
+          1178.12
+        ],
+        "max": [
+          72.3301,
+          -115.894,
+          1189.18
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2722",
+      "file": "FJ2722.obj",
+      "elementId": "FJ2722",
+      "sha256": "ba9b6f6885b2fa65dd32aa1799dd1d3c77f2a95baac9dcab816704ad74fcd0d3",
+      "vertices": 244,
+      "faces": 320,
+      "bounds": {
+        "min": [
+          60.9896,
+          -134.395,
+          1175.57
+        ],
+        "max": [
+          63.5244,
+          -116.931,
+          1179.07
+        ]
+      }
+    },
+    {
+      "target": "RCA",
+      "conceptId": "FMA50039",
+      "name": "RCA artery component FJ2723",
+      "file": "FJ2723.obj",
+      "elementId": "FJ2723",
+      "sha256": "cd008769cb9d565a75bf6b91b5ad3bd482932e37c4747837f6c9446cd23b73a2",
+      "vertices": 2255,
+      "faces": 4502,
+      "bounds": {
+        "min": [
+          -21.7476,
+          -162.494,
+          1187.94
+        ],
+        "max": [
+          20.7385,
+          -93.3042,
+          1261.07
+        ]
+      }
+    },
+    {
+      "target": null,
+      "conceptId": "FMA3855",
+      "name": "Left coronary artery trunk",
+      "kind": "artery",
+      "file": "FJ2737.obj",
+      "elementId": "FJ2737",
+      "sha256": "22aa075132e33f9a3d3be135515362b03ab84f12a0d641edde35e260fb2cd65b",
+      "vertices": 121,
+      "faces": 204,
+      "bounds": {
+        "min": [
+          23.3893,
+          -123.425,
+          1253.95
+        ],
+        "max": [
+          34.405,
+          -117.304,
+          1260.82
+        ]
+      }
+    }
+  ],
+  "bounds": {
+    "min": [
+      -36.3037,
+      -176.517,
+      1174.92
+    ],
+    "max": [
+      79.3913,
+      -70.1704,
+      1279.5
+    ]
+  }
+}

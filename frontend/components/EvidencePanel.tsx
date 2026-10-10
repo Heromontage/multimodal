@@ -1,0 +1,13 @@
+'use client';
+import {useState} from 'react';
+import {Results,Target} from '@/lib/types';
+import {targets} from './ResultsPanel';
+import {optionLabel} from './InputPanel';
+export default function EvidencePanel({results,target,dirty,onSelect}:{results:Results|null;target:Target;dirty:boolean;onSelect:(t:Target)=>void}){
+  const [all,setAll]=useState(false);const prediction=results?.predictions[target];
+  const evidence=prediction?.features.filter(f=>all||f.used).slice(0,all?55:6)||[];
+  const max=Math.max(...(prediction?.features.map(f=>Math.abs(f.contribution))||[1]),.001);
+  return <section className="evidence-section panel"><div className="evidence-heading"><div><div className="tiny-label">Understanding the prediction</div><h2>What contributes to {target==='CAD'?'overall CAD':target}?</h2><p>See how the supplied findings contribute to this model’s estimate.</p></div><div className="evidence-controls"><select aria-label="Explanation target" value={target} onChange={e=>onSelect(e.target.value as Target)}>{targets.map(t=><option key={t}>{t}</option>)}</select><button className="button secondary" onClick={()=>setAll(v=>!v)}>{all?'Show strongest inputs':'View all 55 inputs'}</button></div></div>
+    {!prediction?<div className="empty-evidence"><div className="evidence-placeholder"><span/><span/><span/></div><div><h3>Your findings, explained.</h3><p>Run an assessment to see which inputs raise or lower the model’s estimate.</p></div></div>:<>{dirty&&<p className="stale-note">These explanations belong to the previous assessment. Re-run after your edits.</p>}<div className="evidence-legend"><span><i className="teal-dot"/>Lowers model estimate</span><span><i className="coral-dot"/>Raises model estimate</span><span>Pre-calibration log-odds</span></div><div className="evidence-grid">{evidence.map(f=><div className={`evidence-row ${!f.used?'unused':''}`} key={f.name}><div><span>{f.label}</span><small>{f.value===null?'Missing':optionLabel(f.value)}{!f.used?' · Not used by this model':''}</small></div><div className="evidence-bar"><span style={{width:`${Math.abs(f.contribution)/max*100}%`,background:f.contribution>0?'var(--coral)':'var(--teal)'}}/></div><strong>{f.contribution>0?'+':''}{f.contribution.toFixed(2)}</strong></div>)}</div><p className="explanation-note">{prediction.model} · {prediction.selected_features.length} active inputs · Threshold {(prediction.threshold*100).toFixed(1)}%. {prediction.calibrated?'Sigmoid-calibrated probability.':'LCX probabilities are uncalibrated.'} Contributions describe model associations, not cause and effect.</p></>}
+  </section>;
+}

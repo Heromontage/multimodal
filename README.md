@@ -1,7 +1,9 @@
 # Coronary disease prediction with Naive Bayes
 
 A fresh modeling-only implementation of the predictive requirements in `ps.pdf`.
-There is no web app. The supplied `file.csv` remains unchanged.
+A Next.js / React / TypeScript frontend now connects these saved models to an interactive BodyParts3D heart. The supplied `file.csv` remains unchanged.
+
+Start the complete app with `docker compose up --build`, then open http://localhost:3000. See [frontend setup and model routing](docs/frontend.md).
 
 ## Run
 
