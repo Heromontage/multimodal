@@ -8,7 +8,7 @@ import {Results, Target} from '@/lib/types';
 type Asset={file:string;name:string;target:Target|null};
 export default function HeartViewer({target,results,resetKey,transparent,onSelect}:{target:Target;results:Results|null;resetKey:number;transparent:boolean;onSelect:(t:Target)=>void}){
   const mount=useRef<HTMLDivElement>(null);
-  const sceneRef=useRef<{meshes:THREE.Mesh[];controls:OrbitControls;render:()=>void}|null>(null);
+  const sceneRef=useRef<{meshes:THREE.Mesh[];controls:OrbitControls;render:()=>void;focus:(target:Target)=>void}|null>(null);
   const callback=useRef(onSelect);
   const [status,setStatus]=useState('Loading BodyParts3D anatomy…');
   const [failed,setFailed]=useState(false);
@@ -29,6 +29,9 @@ export default function HeartViewer({target,results,resetKey,transparent,onSelec
     controls.enablePan=false;controls.minDistance=3.5;controls.maxDistance=11;
     const render=()=>renderer.render(scene,camera);
     controls.addEventListener('change',render);
+    let focusFrame=0;
+    const cancelFocus=()=>{if(focusFrame){cancelAnimationFrame(focusFrame);focusFrame=0;}};
+    controls.addEventListener('start',cancelFocus);
     scene.add(new THREE.HemisphereLight(0xffffff,0xb0c9d0,2.3));
     const key=new THREE.DirectionalLight(0xfff1ec,3);key.position.set(-3,4,5);scene.add(key);
     const fill=new THREE.DirectionalLight(0xe3f5ff,2);fill.position.set(4,1,-3);scene.add(fill);
@@ -64,21 +67,50 @@ export default function HeartViewer({target,results,resetKey,transparent,onSelec
         group.rotation.x=-Math.PI/2;
         const box=new THREE.Box3().setFromObject(group);const center=box.getCenter(new THREE.Vector3());const size=box.getSize(new THREE.Vector3());
         const scale=3.2/Math.max(size.x,size.y,size.z);group.scale.setScalar(scale);group.position.copy(center.multiplyScalar(-scale));
-        controls.saveState();sceneRef.current={meshes,controls,render};setStatus('');render();
+        group.updateMatrixWorld(true);
+        const boundsByTarget=new Map<Target,THREE.Box3>();
+        for(const mesh of meshes){
+          const t=mesh.userData.target as Target|undefined;
+          if(!t)continue;
+          mesh.geometry.computeBoundingBox();
+          const bounds=mesh.geometry.boundingBox?.clone().applyMatrix4(mesh.matrixWorld);
+          if(bounds){const existing=boundsByTarget.get(t);if(existing)existing.union(bounds);else boundsByTarget.set(t,bounds);}
+        }
+        const focusCenters=new Map<Target,THREE.Vector3>();
+        focusCenters.set('CAD',new THREE.Box3().setFromObject(group).getCenter(new THREE.Vector3()));
+        for(const [t,bounds] of boundsByTarget)focusCenters.set(t,bounds.getCenter(new THREE.Vector3()));
+        const focus=(selected:Target)=>{
+          const destination=focusCenters.get(selected);
+          if(!destination)return;
+          cancelFocus();
+          const from=controls.target.clone();
+          const start=performance.now();
+          const duration=700;
+          const animate=(now:number)=>{
+            const progress=Math.min((now-start)/duration,1);
+            const eased=progress*progress*(3-2*progress);
+            controls.target.copy(from).lerp(destination,eased);
+            controls.update();
+            if(progress<1)focusFrame=requestAnimationFrame(animate);else focusFrame=0;
+          };
+          focusFrame=requestAnimationFrame(animate);
+        };
+        controls.saveState();sceneRef.current={meshes,controls,render,focus};setStatus('');render();
       }catch(e){if(!disposed){setStatus(e instanceof Error?e.message:'Unable to load anatomy');setFailed(true);}}
     }
     load();
-    return ()=>{disposed=true;controller.abort();observer.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',down);renderer.domElement.removeEventListener('pointerup',select);meshes.forEach(mesh=>{mesh.geometry.dispose();(mesh.material as THREE.Material).dispose();});renderer.dispose();renderer.domElement.remove();sceneRef.current=null;};
+    return ()=>{disposed=true;controller.abort();observer.disconnect();cancelFocus();controls.removeEventListener('start',cancelFocus);controls.dispose();renderer.domElement.removeEventListener('pointerdown',down);renderer.domElement.removeEventListener('pointerup',select);meshes.forEach(mesh=>{mesh.geometry.dispose();(mesh.material as THREE.Material).dispose();});renderer.dispose();renderer.domElement.remove();sceneRef.current=null;};
   },[]);
   useEffect(()=>{
     const current=sceneRef.current;if(!current)return;
     current.meshes.forEach(mesh=>{
       const t=mesh.userData.target as Target|undefined;const material=mesh.material as THREE.MeshStandardMaterial;
-      if(t){const p=results?.predictions[t]?.probability;material.color.set(p===undefined?'#548392':new THREE.Color('#2a9b97').lerp(new THREE.Color('#d35351'),p));material.emissive.set(t===target?'#502723':'#000000');material.emissiveIntensity=t===target ? .2 : 0;material.transparent=false;material.opacity=1;}
+      if(t){const p=results?.predictions[t]?.probability;const selected=target==='CAD'||t===target;material.color.set(p===undefined?'#548392':new THREE.Color('#2a9b97').lerp(new THREE.Color('#d35351'),p));material.emissive.set(selected?'#75dbc4':'#000000');material.emissiveIntensity=selected?(target==='CAD'?.22:.65):0;material.transparent=false;material.opacity=1;}
       else{material.transparent=transparent;material.opacity=transparent ? .22 : 1;material.depthWrite=!transparent;}
       material.needsUpdate=true;
     });current.render();
   },[target,results,transparent,status]);
+  useEffect(()=>{sceneRef.current?.focus(target);},[target,status]);
   useEffect(()=>{sceneRef.current?.controls.reset();sceneRef.current?.render();},[resetKey]);
   return <><div className="three-mount" ref={mount} aria-label="Interactive BodyParts3D heart; drag to rotate and scroll to zoom" role="img"/>{status&&<div className={`viewer-loading ${failed?'viewer-error':''}`} role="status">{status}</div>}</>;
 }
