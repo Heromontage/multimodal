@@ -7,3 +7,5 @@ export type Evidence = {name:string; label:string; value:string|number|null; use
 export type Prediction = TargetInfo & {probability:number; positive:boolean; features:Evidence[]; prior_log_odds:number};
 export type Results = {predictions:Record<Target,Prediction>; warnings:string[]; explanation:string};
 export const targetNames:Record<Target,string> = {CAD:'Overall coronary disease', LAD:'Left anterior descending', LCX:'Left circumflex', RCA:'Right coronary artery'};
+
+export type AccountSession = {user: {email: string}; inputs: Values | null};

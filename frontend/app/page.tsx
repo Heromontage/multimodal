@@ -1,2 +1,2 @@
-import Workspace from '@/components/Workspace';
-export default function Page(){return <Workspace/>;}
+import AuthGate from '@/components/AuthGate';
+export default function Page(){return <AuthGate/>;}

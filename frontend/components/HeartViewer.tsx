@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {OBJLoader} from 'three/addons/loaders/OBJLoader.js';
 import {Results, Target} from '@/lib/types';
+import {arteryColors} from '@/lib/arteryColors';
 
 type Asset={file:string;name:string;target:Target|null};
 export default function HeartViewer({target,results,resetKey,transparent,onSelect}:{target:Target;results:Results|null;resetKey:number;transparent:boolean;onSelect:(t:Target)=>void}){
@@ -105,7 +106,7 @@ export default function HeartViewer({target,results,resetKey,transparent,onSelec
     const current=sceneRef.current;if(!current)return;
     current.meshes.forEach(mesh=>{
       const t=mesh.userData.target as Target|undefined;const material=mesh.material as THREE.MeshStandardMaterial;
-      if(t){const p=results?.predictions[t]?.probability;const selected=target==='CAD'||t===target;material.color.set(p===undefined?'#548392':new THREE.Color('#2a9b97').lerp(new THREE.Color('#d35351'),p));material.emissive.set(selected?'#75dbc4':'#000000');material.emissiveIntensity=selected?(target==='CAD'?.22:.65):0;material.transparent=false;material.opacity=1;}
+      if(t){const selected=target==='CAD'||t===target;material.color.set(arteryColors[t]);material.emissive.set(selected?arteryColors[t]:'#000000');material.emissiveIntensity=selected?(target==='CAD'?.12:.35):0;material.transparent=false;material.opacity=1;}
       else{material.transparent=transparent;material.opacity=transparent ? .22 : 1;material.depthWrite=!transparent;}
       material.needsUpdate=true;
     });current.render();

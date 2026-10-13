@@ -1,4 +1,11 @@
 import {test,expect} from '@playwright/test';
+import {readFile} from 'node:fs/promises';
+import {randomUUID} from 'node:crypto';
+
+test.beforeEach(async({page})=>{
+  const response=await page.request.post('/api/signup',{data:{email:'e2e-'+randomUUID()+'@example.com',password:'test-password-2026'}});
+  expect(response.status()).toBe(201);
+});
 
 test('all 55 inputs, real prediction, stale state, explanations and export',async({page})=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
@@ -21,8 +28,29 @@ test('all 55 inputs, real prediction, stale state, explanations and export',asyn
   await expect(page.locator('canvas')).toBeVisible();
   await page.getByRole('button',{name:'View all 55 inputs'}).click();
   await expect(page.locator('.evidence-row')).toHaveCount(55);
-  const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Export assessment'}).click();
-  expect((await downloadPromise).suggestedFilename()).toBe('coronary-assessment.json');
+  for(const [option,filename] of [
+    ['Download CSV','coronary-assessment.csv'],
+    ['Download Excel (.xlsx)','coronary-assessment.xlsx'],
+    ['Download JSON','coronary-assessment.json'],
+  ]){
+    await page.getByRole('button',{name:'Export assessment'}).click();
+    const downloadPromise=page.waitForEvent('download');
+    await page.getByRole('menuitem',{name:option}).click();
+    const download=await downloadPromise;
+    expect(download.suggestedFilename()).toBe(filename);
+    if(filename.endsWith('.csv')){
+      const csv=await readFile(await download.path(),'utf8');
+      expect(csv.trim().split('\r\n')).toHaveLength(60);
+      expect(csv).not.toContain('Evidence');
+      expect(csv).not.toContain('Threshold');
+    }
+    if(filename.endsWith('.json')){
+      const data=JSON.parse(await readFile(await download.path(),'utf8'));
+      expect(Object.keys(data)).toEqual(['inputs','outputs']);
+      expect(data.inputs).toHaveLength(55);
+      expect(data.outputs).toHaveLength(4);
+    }
+  }
   await page.getByRole('button',{name:'Show strongest inputs'}).click();
   await page.screenshot({path:'test-results/desktop.png',fullPage:true});
   await page.locator('#field-Age').fill('72');

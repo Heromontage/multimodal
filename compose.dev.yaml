@@ -1,0 +1,8 @@
+# Optional loopback ports for local frontend or Python development.
+services:
+  mysql:
+    ports:
+      - "127.0.0.1:3307:3306"
+  model-api:
+    ports:
+      - "127.0.0.1:8000:8000"

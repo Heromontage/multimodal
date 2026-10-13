@@ -1,4 +1,6 @@
 """Local inference API. Uses existing model artifacts; never retrains on requests."""
+from contextlib import asynccontextmanager
+from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
 import math
@@ -7,7 +9,12 @@ import os
 import joblib
 import numpy as np
 import pandas as pd
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
+from sqlalchemy import text
+from sqlalchemy.orm import Session
+
+from .auth import current_user, router as auth_router
+from .database import User, get_db, initialize_database
 from pydantic import BaseModel, ConfigDict
 
 from .model import CONTINUOUS, TARGETS
@@ -83,11 +90,19 @@ class Patient(BaseModel):
     values: dict[str, object]
 
 
-app = FastAPI(title='Coronary Atlas inference', docs_url='/docs')
+@asynccontextmanager
+async def lifespan(app):
+    initialize_database()
+    yield
+
+
+app = FastAPI(title='Coronary Atlas inference', docs_url='/docs', lifespan=lifespan)
+app.include_router(auth_router)
 
 
 @app.get('/health')
-def health():
+def health(db: Session = Depends(get_db)):
+    db.execute(text('SELECT 1'))
     return {'status': 'ready', 'targets': list(bundles())}
 
 
@@ -97,7 +112,7 @@ def get_schema():
 
 
 @app.post('/predict')
-def predict(patient: Patient):
+def predict(patient: Patient, user: User = Depends(current_user), db: Session = Depends(get_db)):
     fields = schema()['fields']
     expected = {f['name'] for f in fields}
     missing, extra = expected-set(patient.values), set(patient.values)-expected
@@ -136,5 +151,9 @@ def predict(patient: Patient):
         features.sort(key=lambda item: -abs(item['contribution']))
         predictions[target] = dict(probability=p, positive=p >= bundle['threshold'],
             **schema()['targets'][target], features=features, prior_log_odds=float(model.prior_log_odds_))
+    # Persist only after validation and all four models have completed successfully.
+    user.saved_inputs = clean
+    user.saved_at = datetime.utcnow()
+    db.commit()
     return dict(predictions=predictions, warnings=warnings,
                 explanation='Additive Naive Bayes log-odds before calibration; associations, not causal effects.')

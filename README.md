@@ -3,7 +3,7 @@
 A fresh modeling-only implementation of the predictive requirements in `ps.pdf`.
 A Next.js / React / TypeScript frontend now connects these saved models to an interactive BodyParts3D heart. The supplied `file.csv` remains unchanged.
 
-Start the complete app with `docker compose up --build`, then open http://localhost:3000. See [frontend setup and model routing](docs/frontend.md).
+Set up local database credentials with `python scripts/configure_database.py`, then start the complete app with `docker compose up --build`, then open http://localhost:3000. See [frontend setup and model routing](docs/frontend.md).
 
 ## Run
 
