@@ -47,7 +47,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Keep file.csv and ml/artifacts/models/*.joblib: Docker needs them at startup.
+# Keep file.csv and artifacts/*.joblib: the API needs them at startup.
 
 # Next.js and browser test output
 frontend/.next/
