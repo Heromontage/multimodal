@@ -1,10 +1,15 @@
 import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 import {randomUUID} from 'node:crypto';
+import {requireTestMailbox,verifyAndSignin} from './mailbox';
+
+test.beforeAll(requireTestMailbox);
 
 test.beforeEach(async({page})=>{
-  const response=await page.request.post('/api/signup',{data:{email:'e2e-'+randomUUID()+'@example.com',password:'test-password-2026'}});
+  const email='e2e-'+randomUUID()+'@example.com';
+  const response=await page.request.post('/api/signup',{data:{email,password:'test-password-2026'}});
   expect(response.status()).toBe(201);
+  await verifyAndSignin(page.request,email,'test-password-2026');
 });
 
 test('all 55 inputs, real prediction, stale state, explanations and export',async({page})=>{

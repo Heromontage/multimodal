@@ -31,6 +31,18 @@ class LoginSession(Base):
     expires_at: Mapped[datetime] = mapped_column(DateTime, index=True)
 
 
+class EmailVerification(Base):
+    # Separate table upgrades existing databases without altering saved users/inputs.
+    __tablename__ = 'email_verifications'
+    user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), primary_key=True)
+    verified_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    token_hash: Mapped[str | None] = mapped_column(String(64), unique=True, nullable=True)
+    expires_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    sent_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    window_start: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    sent_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+
+
 @lru_cache
 def get_engine():
     url = os.environ.get('DATABASE_URL')

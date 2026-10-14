@@ -13,6 +13,8 @@ export default function AuthGate(){
   const [confirmation,setConfirmation]=useState('');
   const [busy,setBusy]=useState(false);
   const [error,setError]=useState('');
+  const [notice,setNotice]=useState('');
+  const [verificationRequired,setVerificationRequired]=useState(false);
   useEffect(()=>{
     const controller=new AbortController();
     fetch('/api/session',{signal:controller.signal,cache:'no-store'}).then(async response=>{
@@ -25,21 +27,36 @@ export default function AuthGate(){
     return ()=>controller.abort();
   },[]);
   async function authenticate(event:React.FormEvent<HTMLFormElement>){
-    event.preventDefault();setError('');
+    event.preventDefault();setError('');setNotice('');
     if(mode==='signup'&&password!==confirmation){setError('The passwords do not match.');return;}
     setBusy(true);
     try{
       const response=await fetch('/api/'+mode,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
       const data=await response.json();
-      if(!response.ok)throw Error(typeof data.detail==='string'?data.detail:'Enter a valid email and a password of 8–128 characters.');
-      setPassword('');setConfirmation('');setAccount(data);
+      if(!response.ok){
+        if(data.detail?.code==='email_unverified')setVerificationRequired(true);
+        throw Error(typeof data.detail==='string'?data.detail:data.detail?.message||'Enter a valid email and a password of 8–128 characters.');
+      }
+      setPassword('');setConfirmation('');
+      if(data.verification_required){setMode('signin');setVerificationRequired(true);setNotice(data.message);}
+      else{setAccount(data);setVerificationRequired(false);}
     }catch(e){setError(e instanceof Error?e.message:'Unable to connect. Please try again.');}
+    finally{setBusy(false);}
+  }
+  async function resend(){
+    setBusy(true);setError('');setNotice('');
+    try{
+      const response=await fetch('/api/resend-verification',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+      const data=await response.json();
+      if(!response.ok)throw Error(typeof data.detail==='string'?data.detail:'Enter your email address above to resend verification.');
+      setNotice(data.message);
+    }catch(e){setError(e instanceof Error?e.message:'Unable to send email. Please try again.');}
     finally{setBusy(false);}
   }
   async function signout(){
     const response=await fetch('/api/signout',{method:'POST'});
     if(!response.ok)throw Error('Unable to sign out. Please try again.');
-    setAccount(null);setError('');setEmail('');setPassword('');setConfirmation('');setMode('signin');
+    setAccount(null);setError('');setNotice('');setVerificationRequired(false);setEmail('');setPassword('');setConfirmation('');setMode('signin');
   }
   if(checking)return <div className="loading-shell" role="status"><CircleNotch size={28} className="spin"/><p>Loading your account…</p></div>;
   if(account)return <Workspace key={account.user.email} account={account} onSignout={signout}
@@ -48,8 +65,10 @@ export default function AuthGate(){
     <a className="brand auth-brand" href="/" aria-label="Coronary Atlas home"><span className="brand-mark"><Heartbeat size={25} weight="bold"/></span><span>Coronary<span className="brand-light">Atlas</span></span></a>
     <section className="auth-card">
       <span className="tiny-label">YOUR ASSESSMENT WORKSPACE</span>
-      <h1>{mode==='signin'?'Welcome back.':'Create your account.'}</h1>
-      <p className="auth-intro">{mode==='signin'?'Sign in to return to your saved patient inputs.':'Save your inputs and return to your assessments.'}</p>
+      <h1>{verificationRequired?'Check your email.':mode==='signin'?'Welcome back.':'Create your account.'}</h1>
+      <p className="auth-intro">{mode==='signin'?'Sign in to return to your saved patient inputs.':'Verify your email, then save and return to your assessments.'}</p>
+      {notice&&<p className="auth-notice" role="status">{notice}</p>}
+      {verificationRequired&&<p className="auth-hint">Open the verification link in your inbox, confirm using your account password, then sign in here. Check your spam folder too.</p>}
       <form onSubmit={authenticate} aria-label={mode==='signin'?'Sign in':'Sign up'}>
         <label htmlFor="auth-email">Email address</label>
         <input id="auth-email" type="email" autoComplete="email" required maxLength={254} value={email} onChange={e=>setEmail(e.target.value)} disabled={busy}/>
@@ -59,7 +78,8 @@ export default function AuthGate(){
         {error&&<p className="auth-error" role="alert">{error}</p>}
         <button className="button primary auth-submit" disabled={busy} type="submit">{busy?<CircleNotch className="spin" size={18}/>:null}{busy?'Please wait…':mode==='signin'?'Sign in':'Create account'}<ArrowRight size={17}/></button>
       </form>
-      <p className="auth-switch">{mode==='signin'?'New here?':'Already have an account?'} <button disabled={busy} onClick={()=>{setMode(mode==='signin'?'signup':'signin');setError('');setPassword('');setConfirmation('');}}>{mode==='signin'?'Sign up':'Sign in'}</button></p>
+      {mode==='signin'&&<button className="button secondary auth-resend" type="button" disabled={busy||!email.trim()} onClick={resend}>Resend verification email</button>}
+      <p className="auth-switch">{mode==='signin'?'New here?':'Already have an account?'} <button disabled={busy} onClick={()=>{setMode(mode==='signin'?'signup':'signin');setError('');setNotice('');setVerificationRequired(false);setPassword('');setConfirmation('');}}>{mode==='signin'?'Sign up':'Sign in'}</button></p>
     </section>
     <p className="auth-save-note">Your 55 inputs are saved when you run an assessment.</p>
   </main>;

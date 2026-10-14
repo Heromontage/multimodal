@@ -1,5 +1,8 @@
 import {test,expect} from '@playwright/test';
 import {randomUUID} from 'node:crypto';
+import {requireTestMailbox,verificationToken,verifyAndSignin} from './mailbox';
+
+test.beforeAll(requireTestMailbox);
 
 test('signup, save on assessment only, signin restores inputs, and accounts stay separate',async({page})=>{
   const email='auth-'+randomUUID()+'@example.com';
@@ -11,6 +14,23 @@ test('signup, save on assessment only, signin restores inputs, and accounts stay
   await page.getByLabel('Password',{exact:true}).fill(password);
   await page.getByLabel('Confirm password').fill(password);
   await page.getByRole('button',{name:'Create account',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Check your email.'})).toBeVisible();
+  expect((await page.request.get('/api/session')).status()).toBe(401);
+  await page.getByLabel('Password',{exact:true}).fill(password);
+  await page.getByRole('button',{name:'Sign in',exact:true}).click();
+  await expect(page.getByRole('alert')).toContainText('Verify your email');
+  const token=await verificationToken(page.request,email);
+  await page.goto('/verify-email#token='+token);
+  await expect(page.getByLabel('Account password')).toBeVisible();
+  expect(page.url()).not.toContain(token);
+  await page.getByLabel('Account password').fill(password);
+  await page.getByRole('button',{name:'Verify email',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Email verified.'})).toBeVisible();
+  expect((await page.request.get('/api/session')).status()).toBe(401);
+  await page.getByRole('link',{name:'Continue to sign in'}).click();
+  await page.getByLabel('Email address').fill(email);
+  await page.getByLabel('Password',{exact:true}).fill(password);
+  await page.getByRole('button',{name:'Sign in',exact:true}).click();
   await expect(page.getByText('Models ready')).toBeVisible();
   await page.locator('#field-Age').fill('58');
   await page.locator('#field-Obesity').selectOption('Y');
@@ -38,10 +58,14 @@ test('signup, save on assessment only, signin restores inputs, and accounts stay
   expect(rejected.status()).toBe(403);
   await page.getByRole('button',{name:'Sign out',exact:true}).click();
   await page.getByRole('button',{name:'Sign up',exact:true}).click();
-  await page.getByLabel('Email address').fill('other-'+randomUUID()+'@example.com');
+  const otherEmail='other-'+randomUUID()+'@example.com';
+  await page.getByLabel('Email address').fill(otherEmail);
   await page.getByLabel('Password',{exact:true}).fill(password);
   await page.getByLabel('Confirm password').fill(password);
   await page.getByRole('button',{name:'Create account',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Check your email.'})).toBeVisible();
+  await verifyAndSignin(page.request,otherEmail,password);
+  await page.reload();
   await expect(page.getByText('Models ready')).toBeVisible();
   expect((await (await page.request.get('/api/session')).json()).inputs).toBeNull();
   await expect(page.locator('#field-Age')).not.toHaveValue('65');
@@ -56,4 +80,15 @@ test('signup and signin fit on a phone',async({page})=>{
   await page.getByRole('button',{name:'Sign up',exact:true}).click();
   await expect(page.getByLabel('Confirm password')).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+});
+
+
+test('missing and invalid verification links fail safely',async({page})=>{
+  await page.goto('/verify-email');
+  await expect(page.getByRole('alert')).toContainText('Open the link');
+  await page.goto('/verify-email#token='+'x'.repeat(43));
+  await page.getByLabel('Account password').fill('test-password-2026');
+  await page.getByRole('button',{name:'Verify email',exact:true}).click();
+  await expect(page.getByRole('alert')).toContainText('invalid or expired');
+  expect((await page.request.get('/api/session')).status()).toBe(401);
 });

@@ -4,6 +4,7 @@ const backend = process.env.MODEL_API_URL || 'http://127.0.0.1:8000';
 const methods:Record<string,string> = {
   schema:'GET', health:'GET', session:'GET',
   predict:'POST', signup:'POST', signin:'POST', signout:'POST',
+  'verify-email':'POST', 'resend-verification':'POST',
 };
 async function proxy(request: NextRequest, context: { params: Promise<{ endpoint: string }> }) {
   const { endpoint } = await context.params;

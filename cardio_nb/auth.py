@@ -12,7 +12,8 @@ from sqlalchemy import delete, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from .database import LoginSession, User, get_db
+from .database import EmailVerification, LoginSession, User, get_db
+from .mail import send_verification_email
 
 router = APIRouter()
 COOKIE = 'coronary_session'
@@ -50,6 +51,9 @@ def current_user(request: Request, db: Session = Depends(get_db)):
     user = db.get(User, session.user_id)
     if user is None:
         raise HTTPException(401, 'Please sign in to continue.')
+    verification = db.get(EmailVerification, user.id)
+    if verification is None or verification.verified_at is None:
+        raise HTTPException(401, 'Verify your email address before signing in.')
     return user
 
 
@@ -71,18 +75,101 @@ def create_session(user, request, response, db):
                         secure=secure_cookie(), samesite='strict', path='/')
 
 
+class EmailAddress(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    email: EmailStr = Field(max_length=254)
+
+    @field_validator('email', mode='before')
+    @classmethod
+    def normalize_email(cls, value):
+        return value.strip().lower() if isinstance(value, str) else value
+
+
+class VerifyEmail(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    token: str = Field(min_length=32, max_length=128)
+    password: str = Field(min_length=8, max_length=128)
+
+
+def issue_verification(user, db):
+    record = db.get(EmailVerification, user.id)
+    if record and record.verified_at:
+        return
+    now = datetime.utcnow()
+    if record is None:
+        record = EmailVerification(user_id=user.id, sent_count=0)
+        db.add(record)
+    if record.sent_at and now - record.sent_at < timedelta(minutes=1):
+        return
+    if not record.window_start or now - record.window_start >= timedelta(hours=1):
+        record.window_start, record.sent_count = now, 0
+    if record.sent_count >= 5:
+        return
+    token = secrets.token_urlsafe(32)
+    record.token_hash = token_hash(token)
+    record.expires_at = now + timedelta(minutes=30)
+    record.sent_at = now
+    record.sent_count += 1
+    db.flush()
+    try:
+        send_verification_email(user.email, token)
+    except Exception:
+        db.rollback()
+        # Never return SMTP credentials or a verification token to the browser/logs.
+        raise HTTPException(503, 'Unable to send verification email. Please try again later or contact the app administrator.') from None
+    db.commit()
+
+
 @router.post('/signup', status_code=201)
-def signup(credentials: Credentials, request: Request, response: Response,
-           db: Session = Depends(get_db)):
+def signup(credentials: Credentials, db: Session = Depends(get_db)):
     user = User(email=str(credentials.email), password_hash=password_hasher.hash(credentials.password))
     db.add(user)
     try:
         db.flush()
     except IntegrityError:
         db.rollback()
-        raise HTTPException(409, 'An account with this email already exists. Please sign in.')
-    create_session(user, request, response, db)
-    return account_data(user)
+        raise HTTPException(409, 'An account with this email already exists. Sign in or resend its verification email.')
+    issue_verification(user, db)
+    return {'verification_required': True, 'message': 'Check your inbox to verify your email before signing in.'}
+
+
+@router.post('/resend-verification')
+def resend_verification(address: EmailAddress, db: Session = Depends(get_db)):
+    user = db.scalar(select(User).where(User.email == str(address.email)).with_for_update())
+    if user:
+        issue_verification(user, db)
+    return {'message': 'If this address has an unverified account, a verification email has been sent. Allow one minute between requests; up to five emails per hour.'}
+
+
+@router.post('/verify-email')
+def verify_email(payload: VerifyEmail, db: Session = Depends(get_db)):
+    # Lock user first, consistently with signin/resend, to serialize token consumption.
+    user = db.scalar(select(User).join(EmailVerification, EmailVerification.user_id == User.id)
+                     .where(EmailVerification.token_hash == token_hash(payload.token)).with_for_update())
+    record = db.get(EmailVerification, user.id) if user else None
+    now = datetime.utcnow()
+    invalid = 'This link is invalid or expired, or the password is incorrect. Request a new email if needed.'
+    if not record or record.verified_at or not record.expires_at or record.expires_at <= now:
+        raise HTTPException(400, invalid)
+    if user.locked_until and user.locked_until > now:
+        raise HTTPException(429, 'Too many attempts. Please try again in 15 minutes.')
+    if user.locked_until:
+        user.failed_logins, user.locked_until = 0, None
+    try:
+        password_hasher.verify(user.password_hash, payload.password)
+    except (VerificationError, InvalidHashError):
+        user.failed_logins += 1
+        if user.failed_logins >= 5:
+            user.locked_until = now + timedelta(minutes=15)
+        db.commit()
+        raise HTTPException(400, invalid)
+    record.verified_at = now
+    record.token_hash = None
+    record.expires_at = None
+    user.failed_logins, user.locked_until = 0, None
+    db.execute(delete(LoginSession).where(LoginSession.user_id == user.id))
+    db.commit()
+    return {'message': 'Email verified. You can now sign in.'}
 
 
 @router.post('/signin')
@@ -111,6 +198,10 @@ def signin(credentials: Credentials, request: Request, response: Response,
     user.locked_until = None
     if password_hasher.check_needs_rehash(user.password_hash):
         user.password_hash = password_hasher.hash(credentials.password)
+    record = db.get(EmailVerification, user.id)
+    if not record or not record.verified_at:
+        db.commit()
+        raise HTTPException(403, {'code': 'email_unverified', 'message': 'Verify your email address before signing in.'})
     create_session(user, request, response, db)
     return account_data(user)
 

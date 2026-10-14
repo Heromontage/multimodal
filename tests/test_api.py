@@ -10,6 +10,8 @@ def client_and_schema(auth_client):
     client, _ = auth_client
     response = client.post('/signup', json={'email': 'api-tests@example.com', 'password': 'test-password-2026'})
     assert response.status_code == 201
+    assert client.post('/verify-email', json={'token': client.mail_outbox[-1][1], 'password': 'test-password-2026'}).status_code == 200
+    assert client.post('/signin', json={'email': 'api-tests@example.com', 'password': 'test-password-2026'}).status_code == 200
     response = client.get('/schema')
     assert response.status_code == 200
     return client, response.json()

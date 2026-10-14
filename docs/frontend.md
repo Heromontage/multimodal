@@ -12,7 +12,7 @@ python scripts/configure_database.py
 docker compose up --build -d
 ```
 
-Open http://localhost:3000 and choose **Sign up**. The configuration command
+Configure the Gmail sender as described below, then open http://localhost:3000 and choose **Sign up**. The configuration command
 creates random database passwords in the ignored local .env file without
 overwriting existing credentials. Keep that file for subsequent restarts.
 Use PORT in .env to change the frontend host port.
@@ -21,6 +21,36 @@ MySQL 8.4, the prediction API, and the frontend run in Docker. Only the frontend
 is published, on loopback. MySQL data lives in the mysql-data named volume and
 survives container restarts. `docker compose down` keeps that volume;
 `docker compose down -v` deletes all accounts and saved inputs.
+
+## Gmail verification setup
+
+In the ignored local `.env`, set `SMTP_USERNAME` to the sending Gmail address and
+`SMTP_PASSWORD` to its Google app password (not the ordinary account password).
+The account needs 2-Step Verification and app-password support. Leave
+`SMTP_HOST=smtp.gmail.com` and `SMTP_PORT=465` for encrypted Gmail SMTP.
+Set `APP_BASE_URL` to the address email recipients can open: localhost for this
+computer only, or the app's public HTTPS URL. Set COOKIE_SECURE=true for HTTPS.
+Never commit the `.env` file. Recreate the API container after configuration:
+`docker compose up -d --build`.
+
+Signup sends a single-use link valid for 30 minutes, then shows a check-inbox
+screen. Opening the link displays a confirmation form; entering the account
+password verifies the email. This avoids activation by email link scanners or
+someone who did not choose the account password. The user then signs in.
+Verification proves mailbox access, not identity or email-provider reputation.
+
+Unverified accounts cannot sign in, use old sessions, or run assessments.
+Existing accounts also need verification; use Resend verification email on the
+sign-in page. Their 55 saved inputs remain intact. A new table is created on
+API startup without modifying existing user rows. Successful verification
+revokes any older sessions.
+
+Resends are limited to once per minute and five per hour per account; a new link
+invalidates the old one. Tokens are stored only as hashes and travel in URL
+fragments so they do not enter HTTP access logs. Wrong verification passwords
+use the same account lockout as sign-in. Mail failures leave the previous token
+intact; failed initial delivery rolls back signup. There is no production
+verification bypass. Missing sender credentials result in a visible send error.
 
 ## Accounts and saved inputs
 
@@ -118,5 +148,11 @@ this is for research/education, not a substitute for diagnostic imaging.
 cd frontend
 npm run build
 node --test unit/assessment-export.test.mjs
-APP_URL=http://127.0.0.1:3000 npx playwright test
+# Browser tests use an isolated API and fake inbox; do not use real Gmail.
+# Terminal 1, repository root:
+.venv/bin/python -m uvicorn tests.browser_server:app --host 127.0.0.1 --port 8011
+# Terminal 2, frontend:
+MODEL_API_URL=http://127.0.0.1:8011 npm run dev -- --port 3011
+# Terminal 3, frontend:
+APP_URL=http://127.0.0.1:3011 TEST_MAILBOX_URL=http://127.0.0.1:8011 npx playwright test
 ```

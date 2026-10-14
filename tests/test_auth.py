@@ -11,7 +11,9 @@ PASSWORD = 'correct-horse-battery-2026'
 def signup(client, email='person@example.com'):
     response = client.post('/signup', json={'email': email, 'password': PASSWORD})
     assert response.status_code == 201, response.text
-    return response
+    token = client.mail_outbox[-1][1]
+    assert client.post('/verify-email', json={'token': token, 'password': PASSWORD}).status_code == 200
+    return client.post('/signin', json={'email': email, 'password': PASSWORD})
 
 
 def defaults(client):
