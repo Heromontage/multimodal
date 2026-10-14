@@ -1,0 +1,24 @@
+services:
+  model-api:
+    environment:
+      COOKIE_SECURE: "true"
+      APP_BASE_URL: https://${APP_DOMAIN:?Set APP_DOMAIN in .env}
+
+  caddy:
+    image: caddy:2.11.4-alpine
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN:?Set APP_DOMAIN in .env}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - frontend
+    restart: unless-stopped
+
+volumes:
+  caddy-data:
+  caddy-config:

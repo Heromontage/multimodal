@@ -5,6 +5,8 @@ A Next.js / React / TypeScript frontend now connects these saved models to an in
 
 Set up local database credentials with `python scripts/configure_database.py`, then start the complete app with `docker compose up --build`, then open http://localhost:3000. See [frontend setup and model routing](docs/frontend.md).
 
+For a public HTTPS deployment of the frontend, backend, and MySQL on Oracle Cloud Always Free, see [deployment instructions](docs/deployment.md).
+
 ## Run
 
 From the project directory, using the existing environment:
