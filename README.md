@@ -172,7 +172,6 @@ Render Free can spin down after inactivity. A scheduler may request the lightwei
 | docs/ | Experiment plan, frontend development notes, and anatomy attribution |
 | tests/ | Python model and API tests |
 | compose.yaml, compose.dev.yaml, Dockerfile.api, frontend/Dockerfile | Local Docker setup |
-| ps.pdf | Original project requirements supplied with the dataset |
 
 The large reports/oof_predictions.csv, reports/inner_search.csv, and reports/splits.json files are kept for reproducibility and audit. Fixed model bundles are kept for comparisons and the command-line --models artifacts/fixed option. Local virtual environments, node_modules, Next.js builds, browser-test output, and .env are ignored by Git. The old Oracle VM deployment files were removed because they do not describe this deployment.
 
