@@ -96,6 +96,35 @@ def test_smtp_configuration_fails_closed(monkeypatch):
         send_verification_email('recipient@example.com', 'secret-token')
 
 
+def test_verification_relay_uses_https_and_shared_secret(monkeypatch):
+    from cardio_nb.mail import send_verification_email
+    import json
+    import urllib.request
+
+    shared_secret = 'a' * 64
+    monkeypatch.setenv('MAIL_RELAY_TOKEN', shared_secret)
+    monkeypatch.setenv('APP_BASE_URL', 'https://atlas.example.com')
+    monkeypatch.delenv('SMTP_USERNAME', raising=False)
+    monkeypatch.delenv('SMTP_PASSWORD', raising=False)
+    requests = []
+
+    class Response:
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+
+    def urlopen(request, timeout):
+        requests.append(request)
+        assert timeout == 15
+        return Response()
+
+    monkeypatch.setattr(urllib.request, 'urlopen', urlopen)
+    send_verification_email('recipient@example.com', 'one-time-secret')
+    request = requests[0]
+    assert request.full_url == 'https://atlas.example.com/api/internal/send-verification'
+    assert request.get_header('Authorization') == f'Bearer {shared_secret}'
+    assert json.loads(request.data) == {'recipient': 'recipient@example.com', 'token': 'one-time-secret'}
+
+
 def test_smtp_uses_tls_and_sends_expiring_link(monkeypatch):
     from cardio_nb.mail import send_verification_email
     import smtplib

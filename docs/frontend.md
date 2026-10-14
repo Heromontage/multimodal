@@ -33,6 +33,17 @@ computer only, or the app's public HTTPS URL. Set COOKIE_SECURE=true for HTTPS.
 Never commit the `.env` file. Recreate the API container after configuration:
 `docker compose up -d --build`.
 
+For a Vercel frontend and Render Free API, Render cannot reach Gmail SMTP.
+Set `MODEL_API_URL` to the Render API URL in Vercel. Set `SMTP_USERNAME` to
+the sender's Gmail address, `SMTP_PASSWORD` to a Google app password, and
+`MAIL_RELAY_TOKEN` to the same randomly generated secret in Vercel. In Render,
+set `MAIL_RELAY_TOKEN` to that secret and `APP_BASE_URL` to the production
+Vercel HTTPS URL. Generate at least 32 random characters for the relay token.
+The API sends the recipient and one-time token to the protected Vercel route
+over HTTPS; the Vercel function sends the email on Gmail SMTP port 465. Do not
+put Gmail credentials or the relay token in `NEXT_PUBLIC_*` variables, the
+repository, or screenshots. Redeploy both services after changing settings.
+
 Signup sends a single-use link valid for 30 minutes, then shows a check-inbox
 screen. Opening the link displays a confirmation form; entering the account
 password verifies the email. This avoids activation by email link scanners or
